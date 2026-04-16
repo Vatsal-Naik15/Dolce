@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pre-order a Dolce dessert from Dr. Hetanshi Desai in Vadodara. Pickup or delivery available with 48-hour notice." />
+  <title>Pre-Order — Dolce by Dr. Hetanshi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+  <header class="site-header scrolled" id="site-header">
+    <div class="container header-inner">
+      <a href="./index.html" class="logo" aria-label="Dolce — home">
+        <span class="logo-script">Dolce</span>
+        <span class="logo-tagline">by Dr. Hetanshi</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./menu.html" class="nav-link">Menu</a></li>
+          <li><a href="./about.html" class="nav-link">Our Story</a></li>
+          <li><a href="./contact.html" class="nav-link active nav-cta">Pre-Order Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         PRE-ORDER FORM + INFO PANEL
+    ============================================================ -->
+    <section class="contact-main" aria-label="Pre-order form">
+      <div class="container contact-inner">
+
+        <!-- ── LEFT: Form ── -->
+        <div class="contact-form-wrap">
+          <p class="section-eyebrow">Place Your Order</p>
+          <h1 class="contact-title">Pre-Order Your Dessert</h1>
+          <p class="contact-sub">
+            Fill in the form and Dr. Hetanshi will confirm within a few hours.
+            All orders need at least <strong>48 hours notice</strong> — plan accordingly.
+          </p>
+
+          <form class="order-form" id="order-form" novalidate aria-label="Dessert pre-order form">
+
+            <!-- Name -->
+            <div class="form-group">
+              <label class="form-label" for="customer-name">
+                Your Name <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form-input"
+                type="text"
+                id="customer-name"
+                name="customer-name"
+                placeholder="e.g. Priya Sharma"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="customer-name-error"
+              />
+              <span class="form-error-msg" id="customer-name-error" role="alert"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="form-label" for="email">
+                Email Address <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form-input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="e.g. priya@example.com"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+              />
+              <span class="form-error-msg" id="email-error" role="alert"></span>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+              <label class="form-label" for="phone">
+                Phone Number <span class="form-label-optional">(optional — helps with delivery coordination)</span>
+              </label>
+              <input
+                class="form-input"
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="e.g. +91 98765 43210"
+                autocomplete="tel"
+              />
+              <span class="form-error-msg" id="phone-error" role="alert"></span>
+            </div>
+
+            <!-- Dessert Selection -->
+            <div class="form-group">
+              <label class="form-label" for="order-type">
+                Dessert Selection <span class="required" aria-hidden="true">*</span>
+              </label>
+              <select
+                class="form-select"
+                id="order-type"
+                name="order-type"
+                required
+                aria-required="true"
+                aria-describedby="order-type-error"
+              >
+                <option value="">— Choose your dessert —</option>
+                <optgroup label="European Classics">
+                  <option value="tiramisu">Tiramisu (Italy) — ₹280</option>
+                  <option value="baklava">Baklava (Greece) — ₹260</option>
+                  <option value="pavlova">Pavlova (Australia) — ₹320</option>
+                  <option value="caramel-flan">Crème Caramel / Flan (France) — ₹230</option>
+                </optgroup>
+                <optgroup label="Asia &amp; the East">
+                  <option value="mango-sticky-rice">Mango Sticky Rice (Thailand) — ₹240</option>
+                  <option value="mochi">Mochi — set of 3 (Japan) — ₹220</option>
+                  <option value="kulfi-falooda">Kulfi Falooda (India) — ₹200</option>
+                  <option value="jalebi-rabri">Jalebi Rabri (India) — ₹180</option>
+                  <option value="honey-cake-slice">Medovik Honey Cake — slice (Russia) — ₹350</option>
+                  <option value="honey-cake-whole">Medovik Honey Cake — whole cake (Russia) — ₹1,800</option>
+                </optgroup>
+                <optgroup label="The Americas">
+                  <option value="churros">Churros with chocolate sauce (Spain) — ₹200</option>
+                  <option value="tres-leches">Tres Leches (Mexico) — ₹270</option>
+                  <option value="key-lime-pie">Key Lime Pie (USA) — ₹290</option>
+                </optgroup>
+              </select>
+              <span class="form-error-msg" id="order-type-error" role="alert"></span>
+            </div>
+
+            <!-- Pickup or Delivery -->
+            <div class="form-group">
+              <label class="form-label" for="fulfillment">
+                Pickup or Delivery? <span class="required" aria-hidden="true">*</span>
+              </label>
+              <select
+                class="form-select"
+                id="fulfillment"
+                name="fulfillment"
+                required
+                aria-required="true"
+                aria-describedby="fulfillment-error fulfillment-hint"
+              >
+                <option value="">— Select an option —</option>
+                <option value="pickup">Self-Pickup — No. 11, Kasturba Nagar Society, Sama-Savli Road, Vadodara</option>
+                <option value="delivery">Home Delivery — Vadodara city area (confirm address with Dr. Hetanshi)</option>
+              </select>
+              <small id="fulfillment-hint" class="form-hint">
+                Pickup address: No. 11, Kasturba Nagar Society, Nutan Public School CBSE Unit, Sama-Savli Road, Opp. Essar Petrol Pump, Raghuvir Nagar, New Sama, Vadodara — 390008.
+              </small>
+              <span class="form-error-msg" id="fulfillment-error" role="alert"></span>
+            </div>
+
+            <!-- Collection / Delivery Date -->
+            <div class="form-group">
+              <label class="form-label" for="order-date">
+                Preferred Date <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input
+                class="form-input"
+                type="date"
+                id="order-date"
+                name="order-date"
+                required
+                aria-required="true"
+                aria-describedby="order-date-error order-date-hint"
+              />
+              <small id="order-date-hint" class="form-hint">
+                Minimum 48 hours from today. Honey Cake needs extra prep — order at least 3 days ahead.
+              </small>
+              <span class="form-error-msg" id="order-date-error" role="alert"></span>
+            </div>
+
+            <!-- Notes -->
+            <div class="form-group">
+              <label class="form-label" for="message">
+                Special Requests or Notes
+              </label>
+              <textarea
+                class="form-textarea"
+                id="message"
+                name="message"
+                placeholder="Allergies, portioning requests, occasion details, delivery address for home delivery, special instructions…"
+                aria-describedby="message-error"
+              ></textarea>
+              <span class="form-error-msg" id="message-error" role="alert"></span>
+            </div>
+
+            <button class="form-submit" type="submit">
+              Send Pre-Order Request →
+            </button>
+
+          </form>
+
+          <!-- Success State -->
+          <div id="form-success" hidden tabindex="-1" aria-live="polite" class="form-success-state">
+            <div class="success-icon" aria-hidden="true">🎉</div>
+            <h2 class="success-title">Order Received!</h2>
+            <p class="success-msg">
+              Thank you! Dr. Hetanshi will confirm your order and any details within a few hours.
+              Check your inbox — and your WhatsApp if you left a number.
+            </p>
+            <p class="success-contact">
+              Questions in the meantime?
+              <a href="tel:+917211158511" class="contact-info-link">+91 72111 58511</a> &nbsp;·&nbsp;
+              <a href="mailto:naikhetanshi@gmail.com" class="contact-info-link">naikhetanshi@gmail.com</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- ── RIGHT: Info Panel ── -->
+        <aside class="contact-info-panel" aria-label="Contact and location information">
+          <h2 class="contact-info-title">Contact &amp; Location</h2>
+
+          <ul class="contact-info-list">
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">📞</span>
+              <div class="contact-info-text">
+                <strong>Phone / WhatsApp</strong>
+                <a href="tel:+917211158511" class="contact-info-link">+91 72111 58511</a>
+              </div>
+            </li>
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">✉️</span>
+              <div class="contact-info-text">
+                <strong>Email</strong>
+                <a href="mailto:naikhetanshi@gmail.com" class="contact-info-link">naikhetanshi@gmail.com</a>
+              </div>
+            </li>
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">📍</span>
+              <div class="contact-info-text">
+                <strong>Pickup Address</strong>
+                No. 11, Kasturba Nagar Society,<br />
+                Nutan Public School, CBSE Unit,<br />
+                Sama-Savli Road, Opp. Essar Petrol Pump,<br />
+                Raghuvir Nagar, Kasturba Nagar,<br />
+                New Sama, Vadodara — 390008,<br />
+                Gujarat, India
+              </div>
+            </li>
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">🚗</span>
+              <div class="contact-info-text">
+                <strong>Home Delivery</strong>
+                Available within Vadodara city. Confirm your address and delivery fee with Dr. Hetanshi before ordering.
+              </div>
+            </li>
+
+            <li class="contact-info-item">
+              <span class="contact-info-icon" aria-hidden="true">🕐</span>
+              <div class="contact-info-text">
+                <strong>Lead Time</strong>
+                Minimum 48 hours for all orders.<br />
+                Honey Cake (Medovik) requires 3 days minimum.
+              </div>
+            </li>
+
+          </ul>
+
+          <p class="contact-info-note">
+            Every order is personally handled by Dr. Hetanshi. She will reach out on WhatsApp or email
+            to confirm your order, discuss any special requirements, and share pickup timing.
+          </p>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MAP SECTION
+    ============================================================ -->
+    <section class="map-section" aria-label="Location map">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Find Us</p>
+          <h2 class="section-title">Kasturba Nagar, New Sama, Vadodara</h2>
+          <p class="section-subtitle">
+            No. 11, Kasturba Nagar Society · Sama-Savli Road · Opp. Essar Petrol Pump
+          </p>
+        </div>
+        <div class="map-embed-wrap">
+          <iframe
+            src="https://maps.google.com/maps?q=Kasturba+Nagar+Society,+New+Sama,+Vadodara,+Gujarat,+India&output=embed&z=15"
+            title="Map showing pickup location: Kasturba Nagar Society, New Sama, Vadodara"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <!-- Directions card below the map -->
+        <div class="directions-card">
+          <div class="directions-landmark">
+            <span class="directions-icon" aria-hidden="true">⛽</span>
+            <div>
+              <strong>Landmark</strong>
+              <p>Opposite Essar Petrol Pump, Sama-Savli Road</p>
+            </div>
+          </div>
+          <div class="directions-landmark">
+            <span class="directions-icon" aria-hidden="true">🏫</span>
+            <div>
+              <strong>Near</strong>
+              <p>Nutan Public School (CBSE Unit), Raghuvir Nagar</p>
+            </div>
+          </div>
+          <div class="directions-landmark">
+            <span class="directions-icon" aria-hidden="true">📮</span>
+            <div>
+              <strong>PIN Code</strong>
+              <p>390008 · Vadodara, Gujarat</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="./index.html" class="footer-logo" aria-label="Dolce home">
+          <span class="logo-script">Dolce</span>
+        </a>
+        <p class="footer-tagline">Around the World in 12 Desserts</p>
+        <p class="footer-made">Handcrafted in Vadodara by Dr. Hetanshi Desai</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <h3 class="footer-nav-title">Explore</h3>
+        <ul class="footer-nav-list">
+          <li><a href="./index.html" class="footer-nav-link">Home</a></li>
+          <li><a href="./menu.html" class="footer-nav-link">Menu</a></li>
+          <li><a href="./about.html" class="footer-nav-link">Our Story</a></li>
+          <li><a href="./contact.html" class="footer-nav-link">Pre-Order</a></li>
+        </ul>
+      </nav>
+
+      <address class="footer-contact">
+        <h3 class="footer-nav-title">Get in Touch</h3>
+        <ul class="footer-contact-list">
+          <li>
+            <span class="footer-contact-icon" aria-hidden="true">📞</span>
+            <a href="tel:+917211158511" class="footer-contact-link">+91 72111 58511</a>
+          </li>
+          <li>
+            <span class="footer-contact-icon" aria-hidden="true">✉️</span>
+            <a href="mailto:naikhetanshi@gmail.com" class="footer-contact-link">naikhetanshi@gmail.com</a>
+          </li>
+          <li>
+            <span class="footer-contact-icon" aria-hidden="true">📍</span>
+            <span>No. 11, Kasturba Nagar Society, Sama-Savli Road, New Sama, Vadodara — 390008</span>
+          </li>
+          <li>
+            <span class="footer-contact-icon" aria-hidden="true">🕐</span>
+            <span>Orders: 48-hour minimum lead time</span>
+          </li>
+        </ul>
+      </address>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2024 Dolce by Dr. Hetanshi Desai. All rights reserved.</p>
+        <p class="footer-philosophy">"Desserts don't solve problems. But neither does broccoli."</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
