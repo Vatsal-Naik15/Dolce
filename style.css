@@ -441,10 +441,10 @@ em {
 }
 
 /* Each slide's image — defined in CSS, never inline */
-.hero-slide:nth-child(1) { background-image: url('../images/dish-tiramisu.jpg'); }
-.hero-slide:nth-child(2) { background-image: url('../images/dish-pavlova.jpg');  background-position: center 40%; }
-.hero-slide:nth-child(3) { background-image: url('../images/dish-honey-cake.jpg'); background-position: center 25%; }
-.hero-slide:nth-child(4) { background-image: url('../images/dish-baklava.jpg');  background-position: center 45%; }
+.hero-slide:nth-child(1) { background-image: url('./dish-tiramisu.jpg'); }
+.hero-slide:nth-child(2) { background-image: url('./dish-pavlova.jpg');  background-position: center 40%; }
+.hero-slide:nth-child(3) { background-image: url('./dish-honey-cake.jpg'); background-position: center 25%; }
+.hero-slide:nth-child(4) { background-image: url('./dish-baklava.jpg');  background-position: center 45%; }
 
 /* ── Grain texture overlay — premium analogue warmth ── */
 .hero::before {
@@ -1091,7 +1091,7 @@ em {
 .cta-strip {
   padding-block: var(--space-2xl);
   background-color: var(--section-dark);
-  background-image: url('../images/dish-kulfi-falooda.jpg');
+  background-image: url('./dish-kulfi-falooda.jpg');
   background-size: cover;
   background-position: center;
   position: relative;
