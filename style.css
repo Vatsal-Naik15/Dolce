@@ -1681,13 +1681,6 @@ em {
   display: block;
 }
 
-/* ================================================================
-   19b. GLOBE SECTION BOTTOM PADDING
-   (marquee goes edge-to-edge, padding sits on section)
-================================================================ */
-.globe-section {
-  padding-bottom: var(--section-pad);
-}
 
 /* ================================================================
    20. RESPONSIVE — TABLET (≤ 1024px)
@@ -2057,4 +2050,272 @@ em {
     font-size: 12pt;
     color: #000;
   }
+}
+
+/* ================================================================
+   28. MOBILE READABILITY PATCH (2026-04-17)
+   Fixes the biggest issues when viewing Dolce on a phone:
+   • Menu tables are re-laid-out as stacked cards (4-col tables
+     cannot fit on a phone — before this patch, text was clipped
+     because of body { overflow-x: hidden }).
+   • Long text/links (email, addresses, dish descriptions) wrap
+     gracefully instead of forcing horizontal overflow.
+   • Dishes grid uses min(100%, 300px) so a single card fits on
+     narrow viewports (~320 px) without overflowing.
+   • Mobile nav now sits above the sticky header when open.
+   • Founder / spotlight images use a portrait aspect on mobile.
+   • Tap targets for nav + buttons meet the 44 px minimum.
+================================================================ */
+
+/* Allow any residual overflow to scroll rather than be silently clipped */
+@media (max-width: 768px) {
+  html, body { overflow-x: clip; }
+}
+
+/* ---- Long-string safety (emails, addresses, dish copy) ---- */
+.footer-contact-link,
+.contact-info-link,
+.footer-contact-list li,
+.contact-info-text,
+.dish-card-desc,
+.testimonial-quote,
+.step-desc,
+.promise-desc,
+.about-value-desc,
+.spotlight-desc,
+.hero-subline {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ---- Make the mobile nav sit above the sticky header ---- */
+.primary-nav.open { z-index: 101; }
+
+/* =========================
+   MOBILE (≤ 768 px)
+   ========================= */
+@media (max-width: 768px) {
+
+  /* Edge padding breathes a little at tiny sizes */
+  :root {
+    --container-pad: clamp(1rem, 4.5vw, 1.5rem);
+  }
+
+  /* Tap targets: full-width nav links with 44 px minimum height */
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Buttons also get a comfortable tap height and wrap long text */
+  .btn {
+    min-height: 44px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  /* Dishes grid: single card fits a 320 px phone without clipping */
+  .dishes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Dish card images slightly shorter on mobile */
+  .dish-card-img-wrap { height: 220px; }
+
+  /* Promise / about-values / directions grids → single column */
+  .promise-grid,
+  .about-values-grid,
+  .directions-card {
+    grid-template-columns: 1fr;
+  }
+
+  /* Founder photo: portrait feels right on phones */
+  .about-founder-img-wrap {
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+  }
+
+  /* Spotlight image: 4/3 reads better than 16/9 on a phone */
+  .spotlight-img-frame {
+    aspect-ratio: 4 / 3;
+    max-width: 100%;
+  }
+
+  /* Spotlight meta: allow labels to sit above values on narrow screens */
+  .spotlight-meta-item {
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .spotlight-meta-label { min-width: 0; }
+
+  /* CTA strip: keep actions stacked and full-width on phones */
+  .cta-strip-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cta-strip-actions .btn { width: 100%; }
+
+  /* Hero: a little more top breathing room; hide scroll hint
+     on short viewports where it crowds the buttons. */
+  .hero { padding-top: calc(var(--header-h) + 0.5rem); }
+  .hero-scroll-hint { display: none; }
+
+  /* Header stays readable: keep hamburger above any overflow */
+  .hamburger { z-index: 102; position: relative; }
+
+  /* ---------- MENU TABLES → CARD VIEW ----------
+     The original 4-col layout cannot fit a phone. We stack each
+     row as a card: [Dish] → [Origin] → [Description] → [Price].
+     thead is hidden visually but remains in the accessibility tree
+     via sr-only pattern so screen readers still announce columns. */
+  .menu-table,
+  .menu-table thead,
+  .menu-table tbody,
+  .menu-table tfoot,
+  .menu-table tr,
+  .menu-table td,
+  .menu-table th {
+    display: block;
+    width: 100%;
+  }
+
+  .menu-table thead tr {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .menu-table tbody tr {
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.1rem 1.15rem;
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .menu-table tbody tr:hover {
+    background-color: var(--light-bg); /* disable row-highlight on mobile */
+  }
+
+  .menu-table tbody td {
+    padding: 0.3rem 0;
+    border: none;
+    text-align: left;
+    color: var(--text-mid);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  /* Dish name + image: the "header" of the card */
+  .menu-table tbody td:first-child {
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* Origin cell (flag + country) */
+  .menu-table tbody td:nth-child(2) {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* Description stays as body text */
+  .menu-table tbody td:nth-child(3) {
+    color: var(--text-mid);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  /* Price gets its own prominent footer strip */
+  .menu-table tbody td:last-child {
+    text-align: left;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent-dark);
+    white-space: normal;
+    padding-top: 0.8rem;
+    margin-top: 0.6rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  /* Thumbnail in the first cell looks better at 64 px on a phone */
+  .menu-thumb {
+    width: 64px;
+    height: 64px;
+    margin-right: 0.85rem;
+  }
+  .menu-dish-cell { align-items: center; }
+
+  /* tfoot note */
+  .menu-table tfoot td {
+    background-color: var(--section-alt);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Map embed a bit shorter on phones */
+  .map-embed-wrap { height: 280px; }
+
+  /* Contact info panel padding a touch tighter */
+  .contact-info-panel { padding: var(--space-md); }
+
+  /* Form-submit: full-width on mobile for easier tapping */
+  .form-submit { align-self: stretch; width: 100%; }
+
+  /* Section header margin trims down on phones */
+  .section-header { margin-bottom: var(--space-lg); }
+}
+
+/* =========================
+   SMALL MOBILE (≤ 480 px)
+   ========================= */
+@media (max-width: 480px) {
+
+  /* Allow dish-name to wrap under the thumbnail if titles are long */
+  .menu-dish-cell {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  /* Philosophy quote doesn't need to be 2.4rem+ on a small phone */
+  .philosophy-quote-line1 { font-size: 1.6rem; }
+  .philosophy-quote-line2 { font-size: 2rem; }
+
+  /* Eyebrow / section titles tighten up */
+  .section-title { font-size: 1.5rem; }
+
+  /* Hero subline copy size */
+  .hero-subline { font-size: 0.95rem; }
+
+  /* CTA strip headline */
+  .cta-strip-headline { font-size: 1.5rem; }
+
+  /* Testimonial spacing */
+  .testimonial-card { padding: var(--space-md); }
+
+  /* Spotlight title */
+  .spotlight-title { font-size: 1.8rem; }
+
+  /* Footer copy wraps cleanly */
+  .footer-bottom-inner { row-gap: 0.25rem; }
 }
